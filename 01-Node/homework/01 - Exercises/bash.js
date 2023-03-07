@@ -13,11 +13,11 @@ function bash() {
    process.stdin.on("data", data => {
       const args = data.toString().trim();;
       const cmd = args.split(' ')[0];
-      if(!commands[cmd])
-      print(`command not found: ${cmd}`)
+      commands[cmd] ? commands[cmd](print, args):
+      print(`command not found: ${cmd}`);
    
    })
-}
+};
 
 
 

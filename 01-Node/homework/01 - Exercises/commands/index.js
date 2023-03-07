@@ -1,14 +1,14 @@
 const fs = require("fs");
 const utils = require("../utils/request");
 const process = require("process");
-const { request } = require("http");
+
 
 function pwd(print) {
     print(process.cwd());
 };
 
 function date(print) {
-    print(new date());
+    print(date());
 };
 
 function echo(print, args) {
@@ -47,9 +47,9 @@ function tail(print, args) {
 }
 
 function curl(print, args) {
-    request(args,(error, response) => {
+    utils.request(args,(error, response) => {
         if(error) throw error;
-        print(response)
+        print(response.data)
     })
 };
 
