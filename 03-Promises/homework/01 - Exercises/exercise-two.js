@@ -28,6 +28,12 @@ function problemA() {
 
   // promise version
   // Tu código acá:
+  let p1 = exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt").then(exerciseUtils.blue);
+  let p2 = exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt").then(exerciseUtils.blue);
+
+  Promise.all([p1, p2]).then(() => {
+    console.log("done");
+  });
 }
 
 function problemB() {
@@ -47,8 +53,13 @@ function problemB() {
 
   // promise version
   // Tu código acá:
+  Promise.all(filenames.map(file => exerciseUtils.promisifiedReadFile(file)
+  .then(stanza => exerciseUtils.blue(stanza))
+  .catch(err => exerciseUtils.magenta(new Error(err))))
+).then(() => exerciseUtils.green("done"))
+.catch(err => exerciseUtils.magenta(new Error(err)))
 }
-
+  
 // EJERCICIO EXTRA
 function problemC() {
   let fs = require("fs");
